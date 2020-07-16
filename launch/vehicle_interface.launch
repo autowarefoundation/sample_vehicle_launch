@@ -5,6 +5,9 @@
   <arg name="kvaser_hardware_id" default="27733"/>
   <arg name="use_ssc" default="false"/>
 
+  <arg name="max_throttle" default="0.4"/>
+  <arg name="max_brake" default="0.8"/>
+
   <!-- pacmod3 -->
   <group ns="pacmod">
     <include file="$(find pacmod3)/launch/pacmod3.launch">
@@ -22,7 +25,16 @@
   <!-- ssc_interface -->
   <include file="$(find as)/launch/ssc_interface.launch" if="$(eval use_ssc==true)"/>
 
+  <!-- raw_vehicle_converter -->
+  <include file="$(find raw_vehicle_cmd_converter)/launch/raw_vehicle_converter.launch" if="$(eval use_ssc==false)">
+    <arg name="max_throttle" value="$(arg max_throttle)"/>
+    <arg name="max_brake" value="$(arg max_brake)"/>
+  </include>
+
   <!-- pacmod_interface -->
-  <include file="$(find as)/launch/pacmod_interface.launch" if="$(eval use_ssc==false)"/>
+  <include file="$(find as)/launch/pacmod_interface.launch" if="$(eval use_ssc==false)">
+    <arg name="max_throttle" value="$(arg max_throttle)"/>
+    <arg name="max_brake" value="$(arg max_brake)"/>
+  </include>
 
 </launch>
