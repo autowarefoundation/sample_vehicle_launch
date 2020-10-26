@@ -1,16 +1,16 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.5)
 project(lexus_description)
 
 add_compile_options(-std=c++14)
 
-find_package(catkin REQUIRED)
+find_package(ament_cmake_auto REQUIRED)
+find_package(xacro REQUIRED)
 
-catkin_package()
+ament_auto_find_build_dependencies()
 
-install(DIRECTORY
-    mesh
-    urdf
-    config
-    launch
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+ament_auto_package(INSTALL_TO_SHARE
+  mesh
+  urdf
+  config
+  launch
 )
