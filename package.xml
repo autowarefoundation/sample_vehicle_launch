@@ -9,6 +9,7 @@
 
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
   <exec_depend>xacro</exec_depend>
+  <!-- <exec_depend>pacmod3</exec_depend> --> <!-- not released for the Foxy yet -->
 
   <export>
     <build_type>ament_cmake</build_type>
