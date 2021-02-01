@@ -1,40 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
 
-  <arg name="use_kvaser" default="true"/>
-  <arg name="kvaser_hardware_id" default="27733"/>
-  <arg name="use_ssc" default="false"/>
+  <arg name="vehicle_id" default="$(env VEHICLE_ID default)"/>
 
   <arg name="max_throttle" default="0.4"/>
   <arg name="max_brake" default="0.8"/>
 
-  <!-- pacmod3 -->
-  <group ns="pacmod">
-    <include file="$(find-pkg-share pacmod3)/launch/pacmod3.launch">
-      <arg name="pacmod_vehicle_type" value="LEXUS_RX_450H"/>
-      <arg name="use_kvaser" value="$(var use_kvaser)"/>
-      <arg name="kvaser_hardware_id" value="$(var kvaser_hardware_id)"/>
-    </include>
-  </group>
+  <arg name="pacmod_param_path" default="$(find-pkg-share as)/config/pacmod_param.yaml"/>
 
-  <!-- ssc -->
-  <include file="$(find-pkg-share ssc_pm_lexus)/launch/speed_steering_control.launch" if="$(var use_ssc)">
-    <arg name="namespace" value="as"/>
+  <!-- pacmod3 -->
+  <include file="$(find-pkg-share jpntaxi_description)/launch/pacmod3_with_kvaser-node-launch.py">
+    <arg name="driver_params_path" value="$(find-pkg-share vehicle_launch)/config/$(var vehicle_id)/driver_params.yaml" />
+    <arg name="reader_params_path" value="$(find-pkg-share vehicle_launch)/config/$(var vehicle_id)/reader_params.yaml" />
+    <arg name="writer_params_path" value="$(find-pkg-share vehicle_launch)/config/$(var vehicle_id)/writer_params.yaml" />
   </include>
 
-  <!-- ssc_interface -->
-  <include file="$(find-pkg-share as)/launch/ssc_interface.launch" if="$(var use_ssc)"/>
-
   <!-- raw_vehicle_converter -->
-  <include file="$(find-pkg-share raw_vehicle_cmd_converter)/launch/raw_vehicle_converter.launch" unless="$(var use_ssc)">
+  <include file="$(find-pkg-share raw_vehicle_cmd_converter)/launch/raw_vehicle_converter.launch.xml">
     <arg name="max_throttle" value="$(var max_throttle)"/>
     <arg name="max_brake" value="$(var max_brake)"/>
+    <arg name="csv_path_accel_map" value="$(find-pkg-share vehicle_launch)/config/$(var vehicle_id)/accel_map.csv"/>
+    <arg name="csv_path_brake_map" value="$(find-pkg-share vehicle_launch)/config/$(var vehicle_id)/brake_map.csv"/>
   </include>
 
   <!-- pacmod_interface -->
-  <include file="$(find-pkg-share as)/launch/pacmod_interface.launch" unless="$(var use_ssc)">
-    <arg name="max_throttle" value="$(var max_throttle)"/>
-    <arg name="max_brake" value="$(var max_brake)"/>
+  <include file="$(find-pkg-share as)/launch/pacmod_interface.launch.xml">
+    <arg name="pacmod_param_path" value="$(var pacmod_param_path)"/>
   </include>
+
+  <!-- pacmod debug publisher -->
+  <!-- <include file="$(find-pkg-share as)/launch/pacmod_additional_debug_publisher.launch.xml" /> -->
 
 </launch>
