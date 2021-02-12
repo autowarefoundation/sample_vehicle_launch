@@ -9,7 +9,7 @@
   <arg name="pacmod_param_path" default="$(find-pkg-share as)/config/pacmod_param.yaml"/>
 
   <!-- pacmod3 -->
-  <include file="$(find-pkg-share jpntaxi_description)/launch/pacmod3_with_kvaser-node-launch.py">
+  <include file="$(find-pkg-share lexus_description)/launch/pacmod3_with_kvaser-node-launch.py">
     <arg name="driver_params_path" value="$(find-pkg-share vehicle_launch)/config/$(var vehicle_id)/driver_params.yaml" />
     <arg name="reader_params_path" value="$(find-pkg-share vehicle_launch)/config/$(var vehicle_id)/reader_params.yaml" />
     <arg name="writer_params_path" value="$(find-pkg-share vehicle_launch)/config/$(var vehicle_id)/writer_params.yaml" />
