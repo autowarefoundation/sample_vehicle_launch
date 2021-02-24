@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- load parameter -->
-  <xacro:property name="vehicle_info" value="${load_yaml('$(find lexus_description)/config/vehicle_info.yaml')}"/>
+  <xacro:property name="vehicle_info" value="${load_yaml('$(find lexus_description)/config/vehicle_info.param.yaml')}"/>
 
   <!-- vehicle body -->
   <link name="base_link">
