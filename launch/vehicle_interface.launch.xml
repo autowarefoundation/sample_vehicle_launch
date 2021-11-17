@@ -9,18 +9,16 @@
   <arg name="pacmod_param_path" default="$(find-pkg-share pacmod_interface)/config/pacmod.param.yaml"/>
 
   <!-- pacmod3 -->
-  <include file="$(find-pkg-share lexus_description)/launch/pacmod3_with_kvaser-node-launch.py">
-    <arg name="driver_params_path" value="$(find-pkg-share vehicle_launch)/config/$(var vehicle_id)/driver.param.yaml" />
-    <arg name="reader_params_path" value="$(find-pkg-share vehicle_launch)/config/$(var vehicle_id)/reader.param.yaml" />
-    <arg name="writer_params_path" value="$(find-pkg-share vehicle_launch)/config/$(var vehicle_id)/writer.param.yaml" />
-  </include>
+  <group>
+    <include file="$(find-pkg-share lexus_description)/launch/pacmod3.launch.py" />
+  </group>
 
   <!-- raw_vehicle_converter -->
   <include file="$(find-pkg-share raw_vehicle_cmd_converter)/launch/raw_vehicle_converter.launch.xml">
     <arg name="max_throttle" value="$(var max_throttle)"/>
     <arg name="max_brake" value="$(var max_brake)"/>
-    <arg name="csv_path_accel_map" value="$(find-pkg-share vehicle_launch)/config/$(var vehicle_id)/accel_map.csv"/>
-    <arg name="csv_path_brake_map" value="$(find-pkg-share vehicle_launch)/config/$(var vehicle_id)/brake_map.csv"/>
+    <arg name="csv_path_accel_map" value="$(find-pkg-share individual_params)/config/$(var vehicle_id)/aip_xx1/accel_map.csv"/>
+    <arg name="csv_path_brake_map" value="$(find-pkg-share individual_params)/config/$(var vehicle_id)/aip_xx1/brake_map.csv"/>
   </include>
 
   <!-- pacmod_interface -->
