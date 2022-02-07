@@ -19,31 +19,35 @@ from launch.event_handlers import OnProcessIO
 from launch.launch_description_sources import FrontendLaunchDescriptionSource
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
-
 import yaml
 
 
 def on_output(event):
     card_info = yaml.safe_load(event.text.decode())
-    if 'Card 0' in card_info.keys():
+    if "Card 0" in card_info.keys():
         return IncludeLaunchDescription(
             FrontendLaunchDescriptionSource(
                 [FindPackageShare("pacmod3"), "/launch/pacmod3.launch.xml"]
             ),
             launch_arguments={
                 "use_kvaser": "true",
-                "kvaser_hardware_id": str(card_info['Card 0']['S/N']),
+                "kvaser_hardware_id": str(card_info["Card 0"]["S/N"]),
             }.items(),
         )
 
+
 def generate_launch_description():
-    return LaunchDescription([
-        Node(
-            package='kvaser_interface',
-            executable='list_channels',
-            name='list_channels',
-        ),
-        RegisterEventHandler(OnProcessIO(
-            on_stdout=on_output,
-        )),
-    ])
+    return LaunchDescription(
+        [
+            Node(
+                package="kvaser_interface",
+                executable="list_channels",
+                name="list_channels",
+            ),
+            RegisterEventHandler(
+                OnProcessIO(
+                    on_stdout=on_output,
+                )
+            ),
+        ]
+    )
