@@ -10,7 +10,7 @@
 
   <!-- pacmod3 -->
   <group>
-    <include file="$(find-pkg-share lexus_description)/launch/pacmod3.launch.py" />
+    <include file="$(find-pkg-share lexus_launch)/launch/pacmod3.launch.py" />
   </group>
 
   <!-- raw_vehicle_converter -->

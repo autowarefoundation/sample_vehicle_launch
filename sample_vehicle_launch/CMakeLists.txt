@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(lexus_description)
+project(lexus_launch)
 
 add_compile_options(-std=c++17)
 
