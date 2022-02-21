@@ -4,7 +4,6 @@ project(lexus_description)
 add_compile_options(-std=c++14)
 
 find_package(ament_cmake_auto REQUIRED)
-find_package(xacro REQUIRED)
 
 ament_auto_find_build_dependencies()
 
