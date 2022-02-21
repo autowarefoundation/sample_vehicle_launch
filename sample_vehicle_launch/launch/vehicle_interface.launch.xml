@@ -14,7 +14,7 @@
 
   <!-- pacmod3 -->
   <group>
-    <include file="$(find-pkg-share lexus_launch)/launch/pacmod3.launch.py" />
+    <include file="$(find-pkg-share lexus_launch)/launch/pacmod3.launch.py"/>
   </group>
 
   <!-- raw_vehicle_converter -->
@@ -23,9 +23,9 @@
     <arg name="max_brake" value="$(var max_brake)"/>
     <arg name="csv_path_accel_map" value="$(var csv_accel_brake_map_path)/accel_map.csv"/>
     <arg name="csv_path_brake_map" value="$(var csv_accel_brake_map_path)/brake_map.csv"/>
-    <arg name="convert_accel_cmd" value="$(var convert_accel_cmd)" />
-    <arg name="convert_brake_cmd" value="$(var convert_brake_cmd)" />
-    <arg name="convert_steer_cmd" value="$(var convert_steer_cmd)" />
+    <arg name="convert_accel_cmd" value="$(var convert_accel_cmd)"/>
+    <arg name="convert_brake_cmd" value="$(var convert_brake_cmd)"/>
+    <arg name="convert_steer_cmd" value="$(var convert_steer_cmd)"/>
   </include>
 
   <!-- accel brake map calibrator -->
@@ -44,6 +44,6 @@
   </include>
 
   <!-- pacmod debug publisher -->
-  <include file="$(find-pkg-share pacmod_interface)/launch/pacmod_additional_debug_publisher.launch.xml" />
+  <include file="$(find-pkg-share pacmod_interface)/launch/pacmod_additional_debug_publisher.launch.xml"/>
 
 </launch>
