@@ -2,11 +2,15 @@
 <launch>
 
   <arg name="vehicle_id" default="$(env VEHICLE_ID default)"/>
-
+  <arg name="csv_accel_brake_map_path" default="$(find-pkg-share individual_params)/config/$(var vehicle_id)/vehicle"/>
   <arg name="max_throttle" default="0.4"/>
   <arg name="max_brake" default="0.8"/>
+  <arg name="convert_accel_cmd" default="true"/>
+  <arg name="convert_brake_cmd" default="true"/>
+  <arg name="convert_steer_cmd" default="false"/>
 
-  <arg name="pacmod_param_path" default="$(find-pkg-share pacmod_interface)/config/pacmod.param.yaml"/>
+  <arg name="pacmod_param_path" default="$(find-pkg-share individual_params)/config/$(var vehicle_id)/vehicle/pacmod.param.yaml"/>
+  <arg name="pacmod_extra_param_path" default="$(find-pkg-share individual_params)/config/$(var vehicle_id)/vehicle/pacmod_extra.param.yaml"/>
 
   <!-- pacmod3 -->
   <group>
@@ -17,16 +21,29 @@
   <include file="$(find-pkg-share raw_vehicle_cmd_converter)/launch/raw_vehicle_converter.launch.xml">
     <arg name="max_throttle" value="$(var max_throttle)"/>
     <arg name="max_brake" value="$(var max_brake)"/>
-    <arg name="csv_path_accel_map" value="$(find-pkg-share individual_params)/config/$(var vehicle_id)/aip_xx1/accel_map.csv"/>
-    <arg name="csv_path_brake_map" value="$(find-pkg-share individual_params)/config/$(var vehicle_id)/aip_xx1/brake_map.csv"/>
+    <arg name="csv_path_accel_map" value="$(var csv_accel_brake_map_path)/accel_map.csv"/>
+    <arg name="csv_path_brake_map" value="$(var csv_accel_brake_map_path)/brake_map.csv"/>
+    <arg name="convert_accel_cmd" value="$(var convert_accel_cmd)" />
+    <arg name="convert_brake_cmd" value="$(var convert_brake_cmd)" />
+    <arg name="convert_steer_cmd" value="$(var convert_steer_cmd)" />
   </include>
+
+  <!-- accel brake map calibrator -->
+  <group>
+    <push-ros-namespace namespace="vehicle/calibration/"/>
+    <include file="$(find-pkg-share accel_brake_map_calibrator)/launch/accel_brake_map_calibrator.launch.xml">
+      <arg name="csv_default_map_dir" value="$(var csv_accel_brake_map_path)/"/>
+      <arg name="rviz" value="false"/>
+    </include>
+  </group>
 
   <!-- pacmod_interface -->
   <include file="$(find-pkg-share pacmod_interface)/launch/pacmod_interface.launch.xml">
     <arg name="pacmod_param_path" value="$(var pacmod_param_path)"/>
+    <arg name="pacmod_extra_param_path" value="$(var pacmod_extra_param_path)"/>
   </include>
 
   <!-- pacmod debug publisher -->
-  <!-- <include file="$(find-pkg-share pacmod_interface)/launch/pacmod_additional_debug_publisher.launch.xml" /> -->
+  <include file="$(find-pkg-share pacmod_interface)/launch/pacmod_additional_debug_publisher.launch.xml" />
 
 </launch>
