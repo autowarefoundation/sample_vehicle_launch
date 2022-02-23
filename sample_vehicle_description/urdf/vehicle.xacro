@@ -12,7 +12,7 @@
     <visual>
       <origin xyz="${vehicle_info['/**']['ros__parameters']['wheel_base']/2.0} 0 0" rpy="${pi/2.0} 0 ${pi}"/>
       <geometry>
-        <mesh filename="package://sample_vehicle_description/mesh/sample_vehicle.dae" scale="1 1 1"/>
+        <mesh filename="package://sample_vehicle_description/mesh/lexus.dae" scale="1 1 1"/>
       </geometry>
     </visual>
   </link>
