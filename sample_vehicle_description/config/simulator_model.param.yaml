@@ -3,7 +3,7 @@
     simulated_frame_id: "base_link" # frame is used very frequently throughout the stack, and is in the center of the rear axle.
     origin_frame_id: "map"
     vehicle_model_type: "DELAY_STEER_ACC_GEARED" # options: IDEAL_STEER_VEL / IDEAL_STEER_ACC / IDEAL_STEER_ACC_GEARED / DELAY_STEER_ACC / DELAY_STEER_ACC_GEARED
-    initialize_source: "INITIAL_POSE_TOPIC" #  If "ORIGIN", the initial pose is set at (0,0,0). If "INITIAL_POSE_TOPIC", node will wait until the /initialpose topic is published.
+    initialize_source: "INITIAL_POSE_TOPIC" #  options: ORIGIN / INITIAL_POSE_TOPIC
     timer_sampling_time_ms: 25
     add_measurement_noise: False # the Gaussian noise is added to the simulated results
     vel_lim: 50.0 # limit of velocity
