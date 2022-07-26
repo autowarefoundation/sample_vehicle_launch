@@ -1,6 +1,6 @@
 /**:
   ros__parameters:
-    simulated_frame_id: "base_link" # frame is used very frequently throughout the stack, and is in the center of the rear axle.
+    simulated_frame_id: "base_link" # center of the rear axle.
     origin_frame_id: "map"
     vehicle_model_type: "DELAY_STEER_ACC_GEARED" # options: IDEAL_STEER_VEL / IDEAL_STEER_ACC / IDEAL_STEER_ACC_GEARED / DELAY_STEER_ACC / DELAY_STEER_ACC_GEARED
     initialize_source: "INITIAL_POSE_TOPIC" #  options: ORIGIN / INITIAL_POSE_TOPIC
