@@ -16,3 +16,4 @@
     steer_time_constant: 0.27 # time constant of the 1st-order steering dynamics
     x_stddev: 0.0001 # x standard deviation for dummy covariance in map coordinate
     y_stddev: 0.0001 # y standard deviation for dummy covariance in map coordinate
+    enable_road_slope_simulation: false # if true, slopes in the lanelet map are used to apply an extra acceleration to the ego vehicle
