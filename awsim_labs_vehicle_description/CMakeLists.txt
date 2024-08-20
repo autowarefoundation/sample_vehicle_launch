@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(awsim_vehicle_description)
+project(awsim_labs_vehicle_description)
 
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 17)
