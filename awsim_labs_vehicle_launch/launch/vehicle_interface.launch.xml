@@ -8,7 +8,7 @@
   <arg name="output_actuation_cmd" default="/control/command/actuation_cmd"/>
   <arg name="output_steering_status" default="/vehicle/status/steering_status"/>
   <!-- Parameter -->
-  <arg name="config_file" default="$(find-pkg-share autoware_raw_vehicle_cmd_converter)/config/raw_vehicle_cmd_converter.param.yaml"/>
+  <arg name="config_file" default="$(find-pkg-share awsim_labs_vehicle_launch)/config/raw_vehicle_cmd_converter/raw_vehicle_cmd_converter.param.yaml"/>
 
   <node pkg="autoware_raw_vehicle_cmd_converter" exec="autoware_raw_vehicle_cmd_converter_node" name="raw_vehicle_cmd_converter" output="screen">
     <param from="$(var config_file)" allow_substs="true"/>
