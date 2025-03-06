@@ -1,14 +1,18 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <!-- load parameter -->
-  <xacro:property name="vehicle_info" value="${xacro.load_yaml('$(find scout_mini_vehicle_description)/config/vehicle_info.param.yaml')}"/>
+  <xacro:property name="vehicle_info" value="${xacro.load_yaml('$(find dentora_vehicle_description)/config/vehicle_info.param.yaml')}"/>
 
   <!-- vehicle body -->
   <link name="base_link">
     <visual>
-      <origin xyz="${vehicle_info['/**']['ros__parameters']['wheel_base']/2.0} 0 0" rpy="${pi/2.0} 0 ${pi}"/>
+
+       <origin xyz="${vehicle_info['/**']['ros__parameters']['wheel_base']/10.0} 0.06 0" rpy="${pi/2.0} 0 ${pi}"/>
       <geometry>
-        <mesh filename="package://scout_mini_vehicle_description/mesh/dentora.dae" scale="1 1 1"/>
+        <!-- <mesh filename="package://scout_mini_vehicle_description/mesh/tutorial_vehicle.fbx" scale="0.5 0.7 0.5"/> -->
+        <mesh filename="package://scout_mini_vehicle_description/mesh/body.dae" scale="3 3 3"/>
+        <mesh filename="package://scout_mini_vehicle_description/mesh/wheel.dae" scale="3 3 3"/>
+
       </geometry>
     </visual>
   </link>
